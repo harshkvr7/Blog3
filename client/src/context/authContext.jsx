@@ -9,12 +9,12 @@ export const AuthContextProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await axios.post("https://blog3-production-4315.up.railway.app/api/auth/login", inputs);
+    const res = await axios.post("/api/auth/login", inputs);
     setCurrentUser(res.data);
   };
 
   const logout = async (inputs) => {
-    await axios.post("https://blog3-production-4315.up.railway.app/api/auth/logout");
+    await axios.post("/api/auth/logout");
     setCurrentUser(null);
   };
 

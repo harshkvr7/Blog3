@@ -28,7 +28,7 @@ const Write = () => {
       const formData = new FormData();
       formData.append("file",file)
 
-      const res = await axios.post("https://blog3-production-4315.up.railway.app/api/upload", formData);
+      const res = await axios.post("/api/upload", formData);
       return (res.data);
     } catch (error) {
       console.log(error);
@@ -41,8 +41,8 @@ const Write = () => {
     const imgUrl = await upload();
 
     try {
-      state ? await axios.put(`https://blog3-production-4315.up.railway.app/api/posts/${state.id}`, {title, desc : value, cat, img : file ? imgUrl : ""}) :
-      await axios.post(`https://blog3-production-4315.up.railway.app/api/posts`, {title, desc : value, cat, img : file ? imgUrl : "", date : moment(Date.now()).format("YYYY-MM-DD")});
+      state ? await axios.put(`/api/posts/${state.id}`, {title, desc : value, cat, img : file ? imgUrl : ""}) :
+      await axios.post(`/api/posts`, {title, desc : value, cat, img : file ? imgUrl : "", date : moment(Date.now()).format("YYYY-MM-DD")});
 
       navigate("/");
     } catch (error) {

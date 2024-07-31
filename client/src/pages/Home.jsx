@@ -14,7 +14,7 @@ const home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`https://blog3-production-4315.up.railway.app/api/posts?cat=${cat}`);
+        const res = await axios.get(`/api/posts?cat=${cat}`);
         setPosts(res.data);
       } catch (error) {
         console.log(error);
