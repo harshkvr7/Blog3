@@ -36,7 +36,7 @@ const Register = () => {
     console.log(imgUrl);
 
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/register", {email : inputs.email,username : inputs.username, password : inputs.password,img : file ? imgUrl : ""});
+      const res = await axios.post("https://blog3-production-4315.up.railway.app/api/auth/register", {email : inputs.email,username : inputs.username, password : inputs.password,img : file ? imgUrl : ""});
       navigate("/login")
     } catch (error) {
       setErr(error.response.data)

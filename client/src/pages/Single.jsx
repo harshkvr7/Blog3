@@ -22,7 +22,7 @@ const Single = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/api/posts/${postId}`);
+        const res = await axios.get(`https://blog3-production-4315.up.railway.app/api/posts/${postId}`);
         setPost(res.data);
       } catch (error) {
         console.log(error);
@@ -33,7 +33,7 @@ const Single = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/posts/${postId}`)
+      await axios.delete(`https://blog3-production-4315.up.railway.app/api/posts/${postId}`)
       Navigate("/");
     } catch (error) {
       console.log(error);

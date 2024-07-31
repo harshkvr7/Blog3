@@ -1,6 +1,0 @@
-{
-    "rewrites": [
-        { "source": "/api/:path(.*)", "destination": "https://blog3-production-4315.up.railway.app/:path" },
-        { "source": "/(.*)", "destination": "/index.html" }
-    ]
-}

@@ -8,7 +8,7 @@ export default defineConfig({
     port : 5173,
     proxy: {
       "/api": {
-        target: "https://blog3-production-40fd.up.railway.app/",
+        target: "https://blog3-production-4315.up.railway.app/",
         changeOrigin: true,
         secure: false,
       },
