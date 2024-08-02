@@ -141,4 +141,16 @@ export const updatePost = (req, res) => {
             return res.json("Post has been created.");
         })
     })
-} 
+}
+
+export const getUserPosts = (req, res) => {
+    const q = "SELECT p.id, username, title, p.descr, p.img, u.img AS userImg, cat, date FROM users u JOIN posts p ON u.id = p.uid WHERE u.id = $1";
+
+    db.query(q,[req.params.id], (err, data) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        return res.status(200).json(data.rows)
+    })
+}

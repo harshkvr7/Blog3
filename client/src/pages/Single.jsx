@@ -40,7 +40,6 @@ const Single = () => {
     }
   }
 
-  console.log(post.userimg);
 
   return (
     <div className="single">
