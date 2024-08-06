@@ -1,6 +1,21 @@
 import React,{useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { initializeApp } from 'firebase/app';
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDbKkkqOZGTBIwNW3-4nH6hjnprfOZwkMU",
+  authDomain: "blog3-23fa5.firebaseapp.com",
+  projectId: "blog3-23fa5",
+  storageBucket: "blog3-23fa5.appspot.com",
+  messagingSenderId: "105259008762",
+  appId: "1:105259008762:web:bb1bd1f4c19aeaf3ebbf43",
+  measurementId: "G-DNZGDL3VD0"
+};
+
+const fireapp = initializeApp(firebaseConfig);
+const storage = getStorage(fireapp);
 
 const Register = () => {
   const [inputs, setInputs] = React.useState({
@@ -15,13 +30,15 @@ const Register = () => {
 
   const upload = async () => {
     try {
-      const formData = new FormData();
-      formData.append("file",file)
+      const fileName = Date.now() + file.name;
+      const storageRef = ref(storage, "uploads/" + fileName);
 
-      const res = await axios.post("/api/upload", formData);
-      return (res.data);
+      await uploadBytes(storageRef, file);
+
+      return fileName;
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      alert(error);
     }
   }
 
@@ -33,7 +50,6 @@ const Register = () => {
     e.preventDefault();
 
     const imgUrl = await upload();
-    console.log(imgUrl);
 
     try {
       const res = await axios.post("/api/auth/register", {email : inputs.email,username : inputs.username, password : inputs.password,img : file ? imgUrl : ""});

@@ -22,7 +22,7 @@ const Menu = ({cat}) => {
         {posts.map(post => {
             return(
                 <div className="post" key={post.id}>
-                    <img src={`../upload/${post.img}`} />
+                    <img src={`https://firebasestorage.googleapis.com/v0/b/blog3-23fa5.appspot.com/o/uploads%2F${post.img}?alt=media`} />
                     <h2>{post.title}</h2>
                     <button>Read More</button>
                 </div>

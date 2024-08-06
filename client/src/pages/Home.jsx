@@ -30,7 +30,7 @@ const home = () => {
           return (
             <div className="post" key={post.id}>
               <div className="img">
-                <img src={`../upload/${post.img}`} />
+                <img src={`https://firebasestorage.googleapis.com/v0/b/blog3-23fa5.appspot.com/o/uploads%2F${post.img}?alt=media`} />
               </div>
               <div className="content">
                 <Link className='link' to={`/post/${post.id}`}>
