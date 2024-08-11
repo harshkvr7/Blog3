@@ -4,11 +4,11 @@ services:
   api:
     build: ./api
     ports:
-      - "3000:3000"  # Exposes port 3000 on the host, but internal communication uses the service name
+      - "3000:3000"  
 
   client:
     build: ./client
     ports:
-      - "5173:5173"
+      - "4173:4173"
     depends_on:
       - api
