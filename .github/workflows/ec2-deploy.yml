@@ -30,9 +30,9 @@ jobs:
         run: sudo docker pull harshkvr7/api:latest
       - name: Pull client image from docker hub
         run: sudo docker pull harshkvr7/client:latest
-      - name: Delete old containers
-        run: sudo docker compose down
       - name: cd to Blog3 folder
         run: cd Blog3
+      - name: Delete old containers
+        run: sudo docker compose down
       - name: Run docker container
         run: sudo docker compose up
