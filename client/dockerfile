@@ -2,16 +2,18 @@
 FROM node:latest
 
 # Set the working directory in the container
-WORKDIR /client
+WORKDIR /app
 
 # Copy package.json and package-lock.json (or yarn.lock) to the working directory
-COPY client/package*.json ./
+COPY package*.json ./
 
 # Install the dependencies
 RUN npm install
 
 # Copy the rest of the application code to the working directory
-COPY client/ ./
+COPY . .
+
+RUN npm run build
 
 # Expose the port on which the app will run
 EXPOSE 4173

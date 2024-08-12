@@ -2,16 +2,12 @@ version: '3'
 
 services:
   api:
-    build:
-      context: .
-      dockerfile: api/Dockerfile
+    build: ./api
     ports:
-      - "3000:3000"
+      - "3000:3000"  
 
   client:
-    build:
-      context: .
-      dockerfile: client/Dockerfile
+    build: ./client
     ports:
       - "4173:4173"
     depends_on:
