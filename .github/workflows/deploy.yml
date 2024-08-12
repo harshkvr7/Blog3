@@ -27,9 +27,17 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./Dockerfile
-          push: false  # Set to true if pushing to DockerHub or another registry
-          tags: api:latest, client:latest
+          file: ./api/Dockerfile  # Use appropriate paths if pushing images
+          push: false
+          tags: api:latest
+
+      - name: Build and push client Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./client/Dockerfile
+          push: false
+          tags: client:latest
 
       - name: Deploy to EC2
         env:
@@ -40,7 +48,7 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > key.pem
           chmod 600 key.pem
 
-          # Copy files to the EC2 instance
+          # Copy docker-compose.yml and any necessary files to the EC2 instance
           scp -i key.pem -o StrictHostKeyChecking=no docker-compose.yml ec2-user@$HOST:/home/ec2-user/
 
           # SSH into the EC2 instance and deploy
